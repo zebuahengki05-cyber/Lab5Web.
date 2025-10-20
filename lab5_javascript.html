@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>mengenal javascript</title>
+    <meta charset="UTF-8">
+    <script>
+        function pesan() {
+            alert("memanggil javascript lewat body onload");
+        }
+
+        function testGenapGanjil() {
+            var val1 = document.kirim.T1.value;
+            var numVal = parseInt(val1); 
+            if (numVal % 2 == 0) {
+                document.kirim.T2.value = "bilangan genap";
+            } else {
+                document.kirim.T2.value = "bilangan ganjil";
+            }
+        }
+
+        function testArithmetic(val1, val2) {
+            document.write("<h2>Hasil Operasi Aritmatika</h2>");
+            document.write("<br>" + "perkalian : " + val1 * val2 + "<br>");
+            document.write(val1 * val2);
+            document.write("<br>" + "pembagian : " + val1 / val2 + "<br>");
+            document.write(val1 / val2);
+            document.write("<br>" + "penjumlahan : " + (val1 + val2) + "<br>"); 
+            document.write(val1 + val2); 
+            document.write("<br>" + "pengurangan : " + (val1 - val2) + "<br>");
+            document.write(val1 - val2);
+            document.write("<br>" + "modulus : " + val1 % val2 + "<br>");
+            document.write(val1 % val2);
+        }
+        function ubahWarnaLB(warna) {
+            document.bgColor = warna;
+        }
+        function ubahWarnaLD(warna) {
+            document.fgColor = warna;
+        }
+        
+        function hitung(ele) {
+            var totalElement = document.getElementById('total');
+            var total = totalElement.value ? parseInt(totalElement.value) : 0;
+            var harga = 0;
+
+            if (ele.checked) {
+                harga = ele.value;
+                total += parseInt(harga);
+            } else {
+                harga = ele.value;
+                if (total > 0) { 
+                    total -= parseInt(harga);
+                }
+            }
+            
+            totalElement.value = total;
+        }
+
+        function testSwitch() {
+            var val1 = window.prompt("input nilai (1-5):");
+            var output = "Anda memilih: ";
+
+            switch (val1) {
+                case "1":
+                    output += "bilangan satu";
+                    break;
+                case "2":
+                    output += "bilangan dua";
+                    break;
+                case "3":
+                    output += "bilangan tiga";
+                    break;
+                case "4":
+                    output += "bilangan empat";
+                    break;
+                case "5":
+                    output += "bilangan lima";
+                    break;
+                default:
+                    output += "bilangan lainnya";
+            }
+            alert(output); 
+        }
+
+        function inputNama() {
+            var nama = prompt("siapa nama anda?", "masukkan nama anda");
+            alert("hai, " + nama); 
+        }
+
+        function cekLulus() {
+            var nilai = prompt("nilai (0-100): ", 0);
+            var hasil = "";
+            
+            if (parseInt(nilai) >= 60) {
+                hasil = "lulus";
+            } else {
+                hasil = "tidak lulus";
+            }
+            alert("hasil: " + hasil);
+        }
+
+    </script>
+</head>
+<body onload="pesan()"> 
+
+    <h1>Pengenalan javascript</h1>
+    <h3>Contoh document.write dan console.log</h3>
+
+    <hr>
+    <h2>1. Alert Box</h2>
+    <button onclick="window.alert('ini merupakan pesan untuk anda');">Tampilkan Alert Sederhana</button>
+
+    <hr>
+    <h2>2. document.write Sederhana</h2>
+    <p>percobaan memakai javascript:</p>
+    <script>
+        document.write("selamat mencoba javascript<br>");
+        document.write("semoga sukses!");
+    </script>
+    
+    <hr>
+    <h2>3. Input Data (Prompt)</h2>
+    <button onclick="inputNama()">Input Nama Anda</button>
+    
+    <hr>
+    <h2>4. Cek Kelulusan (If-Else)</h2>
+    <button onclick="cekLulus()">Cek Lulus (Nilai >= 60)</button>
+
+    <hr>
+    <h2>5. Switch Case (1-5)</h2>
+    <button onclick="testSwitch()">Coba Switch Case</button>
+
+    <hr>
+    <h2>6. Cek Bilangan Genap/Ganjil</h2>
+    <form name="kirim">
+        <p>BIL <input type="text" name="T1" size="20">
+        MERUPAKAN BIL <input type="text" name="T2" size="20"></p>
+        <p><input type="button" value="TEBAK" name="B1" onclick="testGenapGanjil()"></p>
+    </form>
+
+    <hr>
+    <h2>7. Operasi Aritmatika (dengan document.write)</h2>
+    <p><strong>Peringatan:</strong> Klik tombol ini akan menimpa semua konten halaman karena menggunakan <code>document.write</code> setelah halaman dimuat.</p>
+    <input type="button" name="button1" value="arithmetic" onclick="testArithmetic(9,4)">
+    
+    <hr>
+    <h2>8. Objek Document: Ubah Warna</h2>
+    <form>
+        <input type="button" value="Latar Belakang Hijau" onClick="ubahWarnaLB('GREEN')">
+        <input type="button" value="Latar Belakang Putih" onClick="ubahWarnaLB('WHITE')">
+        <input type="button" value="Teks Kuning" onClick="ubahWarnaLD('YELLOW')">
+        <input type="button" value="Teks Biru" onClick="ubahWarnaLD('BLUE')">
+    </form>
+    
+    <p id="modifikasi"></p>
+    <script>
+        document.getElementById('modifikasi').innerHTML = "Dimodifikasi terakhir pada " + document.lastModified;
+    </script>
+
+    <hr>
+    <h2>9. Daftar Menu Makanan</h2>
+    <p>Hitung Total Pembayaran</p>
+    <label><input type="checkbox" value="5000" id="menu1" onclick="hitung(this);"> Ayam Goreng Rp. 5.000</label><br>
+    <label><input type="checkbox" value="500" id="menu2" onclick="hitung(this);"> Tempe Goreng Rp. 500</label><br>
+    <label><input type="checkbox" value="2500" id="menu3" onclick="hitung(this);"> Telur Dadar Rp. 2.500</label><br>
+    <strong>Total Bayar: Rp. <input id="total" type="text" value="0" readonly></strong>
+
+</body>
+</html>
